@@ -14,6 +14,7 @@ import CourseList from "./components/Courses/CourseList/CourseList";
 import CourseDetails from "./components/Courses/CourseDetails/CourseDetails";
 import AddCourse from "./components/Courses/AddCourse/AddCourse";
 import EditCourse from "./components/Courses/EditCourse/EditCourse";
+import Login from "./components/Autentication/Login";
 
 function App() {
   
@@ -60,7 +61,7 @@ function App() {
     <div className="App bg-light" style={{ height: "100vh" }}>
       <NavigationBar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Login />} />
         <Route
           path="/listarServidores"
           element={<GovEmployeeList apiURL={apiURL} />}

@@ -27,7 +27,7 @@ function Login() {
       //setLoggedUser({ ...response.data });
       //localStorage.setItem("loggedUser", JSON.stringify(response.data));
 
-      navigate("/tarefas");
+      //navigate("/tarefas");
 
       toast.success("Login realizado com sucesso", {
         position: "top-right",
@@ -83,15 +83,15 @@ function Login() {
           />
         </Form.Group>
         <Button className="my-3" variant="dark" type="submit">
-          Entrar no sistema
+          Entrar no Sistema
         </Button>
       </Form>
       <Form.Text>
-        Ainda não possui cadastro? Faça já o
+        Ainda não possui Cadastro? Faça já o
         <Link
           className="text-warning fw-bold text-decoration-none"
           to="/autentication/registrar" > {" "}
-          cadastro
+          seu cadastro
         </Link>
         .
       </Form.Text>
