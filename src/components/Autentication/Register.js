@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 //import { api } from "../../api/api";
 
-function Register() {
+function Register({ apiURL }) {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     nome: "",
@@ -22,7 +22,7 @@ function Register() {
     e.preventDefault();
 
     try {
-      await axios.post("/autentication/register", form);
+      await axios.post(apiURL+"/autentication/register", form);
 
       navigate("/autentication/logar");
 
@@ -59,17 +59,6 @@ function Register() {
     >
       <Form className="w-50" onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Nome completo</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Insira um nome para identificação"
-            name="nome"
-            value={form.nome}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
           <Form.Label>Endereço de e-mail</Form.Label>
           <Form.Control
             type="email"
@@ -77,40 +66,52 @@ function Register() {
             name="email"
             value={form.email}
             onChange={handleChange}
+            required
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Senha</Form.Label>
+          <Form.Label>Senha Atual</Form.Label>
           <Form.Control
             type="password"
             placeholder="Insira uma senha válida"
             name="senha"
             value={form.senha}
             onChange={handleChange}
+            required
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Confirmar senha</Form.Label>
+          <Form.Label>Nova Senha</Form.Label>
           <Form.Control
             type="password"
             placeholder="Confirme a senha válida criada anteriormente"
             name="confirmarSenha"
-            value={form.confirmarSenha}
+            value={form.novaSenha}
             onChange={handleChange}
+            required
           />
         </Form.Group>
 
+        <Form.Group className="mb-3">
+          <Form.Label>Perfil</Form.Label>
+          <Form.Select aria-label="Perfil">
+            <option>Selecione o Perfil:</option>
+            <option value="1">Administrador</option>
+            <option value="2">Servidor Público</option>
+          </Form.Select>  
+        </Form.Group>
+
         <Button className="my-3" variant="dark" type="submit">
-          Cadastrar usuário
+          Alterar Senha
         </Button>
       </Form>
       <Form.Text>
-        Já possui cadastro? Faça já o
-        <Link className="text-warning fw-bold text-decoration-none" to="/autentication/logar">
+        Senha já alterada? Então, faça o seu 
+        <Link className="text-warning fw-bold text-decoration-none" to="/">
           {" "}
-          login
+          Login
         </Link>
         .
       </Form.Text>

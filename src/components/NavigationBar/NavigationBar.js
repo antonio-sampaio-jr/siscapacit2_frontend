@@ -11,7 +11,7 @@ function NavigationBar() {
   return (
     <Navbar bg="primary" variant="primary" expand="lg">
       <Container>
-        <Navbar.Brand>SisCAPACIT 1.0</Navbar.Brand>
+        <Navbar.Brand>SisCAPACIT 2.0</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
