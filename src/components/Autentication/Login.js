@@ -90,7 +90,9 @@ function Login() {
         Ainda não possui cadastro? Faça já o
         <Link
           className="text-warning fw-bold text-decoration-none"
-          to="/autentication/registrar" > {" "}
+          to="/autentication/registrar"
+        >
+          {" "}
           cadastro
         </Link>
         .
