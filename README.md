@@ -1,8 +1,8 @@
-<h1 align="center">📇 SisCAPACIT 1.0</h1>
+<h1 align="center">📇 SisCAPACIT 2.0</h1>
 
 ## :memo: Descrição
 
-Projeto de sistema de capacitação para servidores públicos - Módulo Administrador. Consiste em 2 CRUDs (funcionalidades CREATE, READ, UPDATE, DELETE): um com os dados de cadastros dos servidores, e o outro com os dados dos cursos ofertados.
+Projeto de sistema de capacitação para servidores públicos - Módulos Administrador e Usuário. Consiste em 2 CRUDs (funcionalidades CREATE, READ, UPDATE, DELETE): um com os dados de cadastros dos servidores, e o outro com os dados dos cursos ofertados.
 
 ## :books: Funcionalidades
 
