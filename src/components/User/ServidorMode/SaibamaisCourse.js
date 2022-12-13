@@ -2,14 +2,14 @@ import { Button, Container, Card, Col, Form, ListGroup } from "react-bootstrap";
 import NavBarServMod from "./NavBarSerMod";
 import NavBarServCourses from "./NavBarServCourses";
 import ServPage from "./ServPage";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getServidorById, login, matricularCurso } from "./api";
 
 function SaibamaisCourse({ apiUrlCourses }) {
   const { id } = useParams();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({ periodoInscricao: "" });
   const [dadosServidor, setDadosServidor] = useState([]);
   const navigate = useNavigate();
 
@@ -18,15 +18,16 @@ function SaibamaisCourse({ apiUrlCourses }) {
       try {
         const response = await axios.get(
           `https://ironrest.cyclic.app/cursos/${id}`
-          );
-          setData(response.data);
-          setDadosServidor(getServidorById());
+        );
+        setData(response.data);
+        console.log(response);
+        console.log(response.data.periodoInscricao.slice(13));
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
-  }, []);
+  }, [id]);
 
   const matricular = async () => {
     const idServidor = localStorage.getItem("idServidor");
@@ -84,15 +85,20 @@ function SaibamaisCourse({ apiUrlCourses }) {
         </Col>
 
         <br />
-        <br />
 
-        {dadosServidor.courses.filter(el => el._id == data._id).length !== 0 ? (
-          <Button className="p-4 mb-3" variant="warning" onClick={desmatricular}>
-          Cancelar matrícula
-        </Button>
+        {data.periodoInscricao.slice(13) > Date.now() ? (
+          <Button
+            className="p-4 mb-3"
+            variant="warning"
+            onClick={desmatricular}
+          >
+            Cancelar matrícula
+          </Button>
         ) : (
           <Button className="p-4 mb-3" variant="success" onClick={matricular}>
-            Inscrever-se
+            <Link className="nav-link" to="/pageInscricao">
+              Inscreva-se
+            </Link>
           </Button>
         )}
       </Container>
