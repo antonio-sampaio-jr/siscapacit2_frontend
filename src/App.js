@@ -14,9 +14,12 @@ import CourseList from "./components/Courses/CourseList/CourseList";
 import CourseDetails from "./components/Courses/CourseDetails/CourseDetails";
 import AddCourse from "./components/Courses/AddCourse/AddCourse";
 import EditCourse from "./components/Courses/EditCourse/EditCourse";
+import ServPage from "./components/User/ServidorMode/ServPage";
+import SaibamaisCourse from "./components/User/ServidorMode/SaibamaisCourse";
+import pageInscricao from "./components/User/ServidorMode/pageInscricao";
+import MeusCursos from "./components/User/ServidorMode/CadastroServidor/MeusCursos";
 
 function App() {
-  
   const apiURLCourses = "https://siscapacit2-api.cyclic.app/cursos";
   const apiURL = "https://siscapacit2-api.cyclic.app/servidores";
 
@@ -109,6 +112,11 @@ function App() {
             />
           }
         />
+        <Route path="/pageServidor" element={<ServPage />} />
+        <Route path="/saibaMaisCourse/:id" element={<SaibamaisCourse />} />
+        <Route path="/meusCursos" element={<MeusCursos />} />
+        <Route path="/pageInscricao" element={<pageInscricao />} />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
