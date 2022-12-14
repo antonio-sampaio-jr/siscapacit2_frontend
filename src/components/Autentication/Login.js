@@ -35,13 +35,13 @@ function Login({ apiURL, apiURLAdmin }) {
     
       //setLoggedUser({ ...response.data });
       //localStorage.setItem("loggedUser", JSON.stringify(response.data));
-      /*
+      
       if (response.data.msg === "OkAdmin")
           navigate("/listarServidores");
       else if (response.data.msg === "OkGovEmployee")
           navigate("/listarCursosAluno");
       else 
-          navigate("/");  */
+          navigate("/"); 
 
       toast.success("Login realizado com sucesso", {
         position: "top-right",

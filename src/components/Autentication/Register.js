@@ -44,7 +44,7 @@ function Register({ apiURL, apiURLAdmin  }) {
         theme: "light",
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.msg);
 
       toast.error("Não foi possível alterar a senha", {
         position: "top-right",
