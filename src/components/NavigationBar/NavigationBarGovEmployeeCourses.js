@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-function NavBarServCourses(props) {
+function NavigationBarGovEmployeeCourses(props) {
   const location = useLocation();
 
   if (location.pathname === "/") {
@@ -67,4 +67,4 @@ function NavBarServCourses(props) {
             <Nav.Link href="#pricing">Mestrado</Nav.Link>
             <Nav.Link href="#pricing">Doutorado</Nav.Link> */
 
-export default NavBarServCourses;
+export default NavigationBarGovEmployeeCourses;

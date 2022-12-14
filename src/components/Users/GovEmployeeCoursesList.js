@@ -1,12 +1,11 @@
 import { Card, CardGroup, Col, Container, Row, Button } from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import NavBarSerMod from "./NavBarSerMod";
-import NavBarServCourses from "./NavBarServCourses";
 import { Link } from "react-router-dom";
-import { getServidorById } from "./api";
-
-function ServPage() {
+import NavigationBarGovEmployee from "../NavigationBar/NavigationBarGovEmployee.js";
+import NavigationBarGovEmployeeCourses from "../NavigationBar/NavigationBarGovEmployeeCourses.js";
+// 1. Fazer Funcionar ;-)
+function GovEmployeeCoursesList({ apiURLCourses }) {
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(true);
 
@@ -16,8 +15,7 @@ function ServPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        getServidorById()
-        const response = await axios.get("https://ironrest.cyclic.app/cursos");
+        const response = await axios.get(apiURLCourses+"/listarCursos");
         response.data.map((el) => {
           if (el.situacao == "Em andamento" || el.situacao == "Concluído") {
             el.situacao = "Inscrições Encerradas";
@@ -45,16 +43,9 @@ function ServPage() {
 
   return (
     <Container>
-      <NavBarSerMod />
-      <NavBarServCourses setSituacao={setSituacao} setTipo={setTipo} />
+      <NavigationBarGovEmployee />
+      <NavigationBarGovEmployeeCourses setSituacao={setSituacao} setTipo={setTipo} />
       <Row>
-        {/* <img
-     className="sevidor mb-3 mt-3"
-          src="https://blog.even3.com.br/wp-content/uploads/2020/06/dicas-estudar-online.png"
-          alt="servidor"
-          height="300"
-          widht="300"
-        /> */}
 
         <h2 className="mb-3 mt-3 text-muted">
           Bem-vindo, Servidor!
@@ -89,9 +80,10 @@ function ServPage() {
                     <Button variant="outline-primary">
                       <Link
                         className="saibamais"
-                        to={`/saibaMaisCourse/${current._id}`}
+                        to={`/listarCursoAluno/${current._id}/6398e1849a7cc8fb4d7f1d33`} //incluir o id do Aluno
                         style={{ textDecoration: "none" }}
                       >
+                      {/** 2. Fazer funcionar */}
                         Saiba mais
                       </Link>
                     </Button>
@@ -105,4 +97,4 @@ function ServPage() {
     </Container>
   );
 }
-export default ServPage;
+export default GovEmployeeCoursesList;

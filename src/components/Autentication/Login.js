@@ -6,12 +6,13 @@ import { toast } from "react-toastify";
 import axios from "axios";
 //import { AuthContext } from "../../contexts/authContext.js";
 
-function Login() {
+function Login({ apiURL, apiURLAdmin }) {
   const navigate = useNavigate();
   //const { setLoggedUser } = useContext(AuthContext);
   const [form, setForm] = useState({
     email: "",
     senha: "",
+    perfil:"",
   });
 
   const handleChange = (e) => {
@@ -20,14 +21,26 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    let response;
     try {
-      const response = await axios.post("/autentication/logar", form);
 
+      if (form.perfil === "1") //Admin
+      {
+        response = await axios.post(apiURLAdmin+"/autenticarAdmin", form);
+      }  
+      else if (form.perfil === "2") //Servidor Público
+      {
+        response = await axios.post(apiURL+"/autenticarServidor", form);
+      }
+    
       //setLoggedUser({ ...response.data });
       //localStorage.setItem("loggedUser", JSON.stringify(response.data));
-
-      navigate("/tarefas");
+      if (response.data.msg === "OkAdmin")
+          navigate("/listarServidores");
+      else if (response.data.msg === "OkGovEmployee")
+          navigate("/listarCursosAluno");
+      else 
+          navigate("/");  
 
       toast.success("Login realizado com sucesso", {
         position: "top-right",
@@ -69,6 +82,7 @@ function Login() {
             value={form.email}
             onChange={handleChange}
             placeholder="Insira o endereço de e-mail cadastrado"
+            required
           />
         </Form.Group>
 
@@ -80,22 +94,30 @@ function Login() {
             value={form.senha}
             onChange={handleChange}
             placeholder="Insira a senha cadastrada"
+            required
           />
         </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Perfil</Form.Label>
+          <Form.Select name="perfil" onChange={handleChange} aria-label="Perfil">
+            <option>Selecione o Perfil:</option>
+            <option value="1">Administrador</option>
+            <option value="2">Servidor Público</option>
+          </Form.Select>  
+        </Form.Group>
+
         <Button className="my-3" variant="dark" type="submit">
-          Entrar no sistema
+          Entrar no Sistema
         </Button>
       </Form>
       <Form.Text>
-        Ainda não possui cadastro? Faça já o
+        Você ainda não alterou a sua Senha Padrão? Altere-a
         <Link
           className="text-warning fw-bold text-decoration-none"
-          to="/autentication/registrar"
-        >
-          {" "}
-          cadastro
+          to="/register" > {" "}
+          Agora!
         </Link>
-        .
       </Form.Text>
     </Container>
   );

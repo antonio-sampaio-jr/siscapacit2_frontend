@@ -14,14 +14,20 @@ import CourseList from "./components/Courses/CourseList/CourseList";
 import CourseDetails from "./components/Courses/CourseDetails/CourseDetails";
 import AddCourse from "./components/Courses/AddCourse/AddCourse";
 import EditCourse from "./components/Courses/EditCourse/EditCourse";
-
+import Login from "./components/Autentication/Login";
+import Register from "./components/Autentication/Register";
+import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
+import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetails";
 
 function App() {
+  
   const apiURLCourses = "https://siscapacit2-api.cyclic.app/cursos";
   const apiURL = "https://siscapacit2-api.cyclic.app/servidores";
+  const apiURLAdmin = "https://siscapacit2-api.cyclic.app/administradores";
+  //comentário
 
   const [form, setForm] = useState({
-    matricula: "",
+    matricula: "", 
     nome: "",
     foto: "",
     orgao: "",
@@ -60,7 +66,12 @@ function App() {
     <div className="App bg-light" style={{ height: "100vh" }}>
       <NavigationBar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Login apiURL={apiURL} apiURLAdmin={apiURLAdmin}/>} />
+        <Route path="/register" element={<Register apiURL={apiURL}/>} />
+
+        <Route path="/listarCursosAluno" element={<GovEmployeeCoursesList apiURL={apiURLCourses}/>} />
+        <Route path="/listarCursoAluno/:idCurso/6398e1849a7cc8fb4d7f1d33" element={<GovEmployeeCourseDetails apiURL={apiURLCourses}/>} />
+        
         <Route
           path="/listarServidores"
           element={<GovEmployeeList apiURL={apiURL} />}
@@ -109,8 +120,6 @@ function App() {
             />
           }
         />
- 
-
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-function NavBarServMod() {
+function NavigationBarGovEmployee() {
   const location = useLocation();
 
   if (location.pathname === "/") {
@@ -11,7 +11,7 @@ function NavBarServMod() {
   return (
     <Navbar bg="primary" variant="primary" expand="lg">
       <Container>
-        <Navbar.Brand>SisCAPACIT 1.0</Navbar.Brand>
+        <Navbar.Brand>SisCAPACIT 2.0</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -26,13 +26,12 @@ function NavBarServMod() {
           <Nav.Link >
           <Link  className="btn btn-outline-light btn-lg m-1"
               role="button"
-          to="/meusCursos" style={{ textDecoration: "none" }}>
+          to="/listarCursosAluno" style={{ textDecoration: "none" }}>
           Área do Aluno</Link></Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
-//gio
 
-export default NavBarServMod;
+export default NavigationBarGovEmployee;
