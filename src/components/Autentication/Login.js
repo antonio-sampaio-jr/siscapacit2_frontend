@@ -6,12 +6,13 @@ import { toast } from "react-toastify";
 import axios from "axios";
 //import { AuthContext } from "../../contexts/authContext.js";
 
-function Login({ apiURL }) {
+function Login({ apiURL, apiURLAdmin }) {
   const navigate = useNavigate();
   //const { setLoggedUser } = useContext(AuthContext);
   const [form, setForm] = useState({
     email: "",
     senha: "",
+    perfil:"",
   });
 
   const handleChange = (e) => {
@@ -20,26 +21,26 @@ function Login({ apiURL }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    let response;
     try {
 
       if (form.perfil === "1") //Admin
       {
-
+        response = await axios.post(apiURLAdmin+"/autenticarAdmin", form);
       }  
       else if (form.perfil === "2") //Servidor Público
       {
-        const response = await axios.post(apiURL+"/autenticarServidor", form);
+        response = await axios.post(apiURL+"/autenticarServidor", form);
       }
+    
       //setLoggedUser({ ...response.data });
       //localStorage.setItem("loggedUser", JSON.stringify(response.data));
-      if (response.data === "OkAdmin")
+      if (response.data.msg === "OkAdmin")
           navigate("/listarServidores");
-      else if (response.data === "OkGovEmployee")
-          navigate("/listarCursos");
+      else if (response.data.msg === "OkGovEmployee")
+          navigate("/listarCursosAluno");
       else 
-          navigate("/login");  
-      //navigate("/tarefas");
+          navigate("/");  
 
       toast.success("Login realizado com sucesso", {
         position: "top-right",
@@ -99,7 +100,7 @@ function Login({ apiURL }) {
 
         <Form.Group className="mb-3">
           <Form.Label>Perfil</Form.Label>
-          <Form.Select name="perfil" aria-label="Perfil">
+          <Form.Select name="perfil" onChange={handleChange} aria-label="Perfil">
             <option>Selecione o Perfil:</option>
             <option value="1">Administrador</option>
             <option value="2">Servidor Público</option>
