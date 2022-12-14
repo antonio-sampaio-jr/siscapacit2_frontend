@@ -18,6 +18,8 @@ import Login from "./components/Autentication/Login";
 import Register from "./components/Autentication/Register";
 import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
 import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetails";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const apiURLCourses = "https://siscapacit2-api.cyclic.app/cursos";
@@ -64,6 +66,8 @@ function App() {
 
   return (
     <div className="App bg-light" style={{ height: "100vh" }}>
+      <ToastContainer />
+
       <NavigationBar />
 
       <Routes>
