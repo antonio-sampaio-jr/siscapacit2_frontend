@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import NavigationBarGovEmployee from "../NavigationBar/NavigationBarGovEmployee.js";
 import NavigationBarGovEmployeeCourses from "../NavigationBar/NavigationBarGovEmployeeCourses.js";
 
-// 1. Fazer Funcionar ;-) app url courses não esta trazendo
+// 1. Fazer Funcionar ;-) app url courses não esta trazendo a lista dos cursos
 function GovEmployeeCoursesList({ apiURLCourses }) {
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(true);
@@ -16,7 +16,7 @@ function GovEmployeeCoursesList({ apiURLCourses }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(apiURLCourses + "/listarCursos");
+        const response = await axios.get(`${apiURLCourses}/listarcursos`);
         response.data.map((el) => {
           if (el.situacao == "Em andamento" || el.situacao == "Concluído") {
             el.situacao = "Inscrições Encerradas";
