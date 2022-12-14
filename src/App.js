@@ -17,8 +17,9 @@ import AddCourse from "./components/Courses/AddCourse/AddCourse";
 import EditCourse from "./components/Courses/EditCourse/EditCourse";
 import Login from "./components/Autentication/Login";
 import Register from "./components/Autentication/Register";
-import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
 import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetails";
+import "react-toastify/dist/ReactToastify.css";
+import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
 
 function App() {
   
@@ -71,8 +72,8 @@ function App() {
         <Route path="/" element={<Login apiURL={apiURL} apiURLAdmin={apiURLAdmin}/>} />
         <Route path="/register" element={<Register apiURL={apiURL}/>} />
 
-        <Route path="/listarCursosAluno" element={<GovEmployeeCoursesList apiURL={apiURLCourses}/>} />
-        <Route path="/listarCursoAluno/:idCurso/6398e1849a7cc8fb4d7f1d33" element={<GovEmployeeCourseDetails apiURL={apiURLCourses}/>} />
+        <Route path="/listarCursosAluno" element={<GovEmployeeCoursesList apiURLCourses={apiURLCourses}/>} />
+        <Route path="/listarCursoAluno/:idCurso/:idGovEmployee" element={<GovEmployeeCourseDetails apiURL={apiURL} apiURLCourses={apiURLCourses}/>} />
         
         <Route
           path="/listarServidores"

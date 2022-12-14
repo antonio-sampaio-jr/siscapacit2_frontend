@@ -3,22 +3,42 @@ import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 
-function GovEmployeeCourseDetails({ apiURLCourses }) {
+function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
   const [course, setCourse] = useState({});
-  const { id } = useParams();
+  const [encontrou, setEncontrou] = useState(false);
+  const [allCourses, setAllCourses] = useState([]);
+  const { idCurso,  idGovEmployee } = useParams();
+
   const navigate = useNavigate();
   useEffect(() => {
     try {
       const fetchCourse = async () => {
-        const response = await axios.get(`${apiURLCourses}/listarCurso/${id}`);
+        const response = await axios.get(`${apiURLCourses}/listarCurso/${idCurso}`);
         setCourse(response.data);
-      };
-
+        const responseAll = await axios.get(`${apiURL}/listarCursosServidor/${idGovEmployee}`);
+        setAllCourses(responseAll.data);
+      }
       fetchCourse();
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
     }
-  }, [id, apiURLCourses]);
+  },[idCurso, apiURLCourses]);
+
+  useEffect(() => {
+    allCourses.forEach((course)=>{
+      if (course._id === idCurso)
+        setEncontrou(true);
+    });   
+  },[allCourses]);
+
+  /*allCourses.forEach((course)=>{
+    console.log("=>"+course._id+"<=>"+idCurso);
+    if (course._id === idCurso)
+       setEncontrou(true);
+  }) */
+
+ // setEncontrou(allCourses.includes(course));
 
   return (
     <Container
@@ -93,9 +113,10 @@ function GovEmployeeCourseDetails({ apiURLCourses }) {
           </Row>
           <Row className="mt-3">
             <Col>
-              <Button variant="secondary" onClick={() => navigate(-1)}>
-                Fazer Gio e Priscila :-) //Botão de Fazer ou de Desfazer Matrícula
-                Mostrar ou não o botão de "Fazer Matrícula"
+              <Button variant="primary">
+               {
+                   encontrou? (<>Matriculado</>):(<>Não Matriculado</>) 
+               }
               </Button>
             </Col>
           </Row>
