@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Card, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import NavigationBarGovEmployee from '../NavigationBar/NavigationBarGovEmployee';
 
-function GovEmployeeCoursesListTeste({apiURLCourses}) {
+function GovEmployeeCoursesList({apiURLCourses}) {
 
     const[courses,setCourses] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
@@ -23,17 +24,6 @@ function GovEmployeeCoursesListTeste({apiURLCourses}) {
         }
     }, []);
 
-    /*
-    const renderCourses = courses.map((course)=>{
-        return(
-        <Col key={course._id}>
-            <div className="card">
-                <img src={course.foto} alt=""/>
-                <h3>{course.nome}</h3> 
-                <p>Price: {course.descricao}</p>
-            </div>
-        </Col>);
-    }); */
     const renderCourses = courses.map((course)=>{
         return(
         <>
@@ -62,6 +52,22 @@ function GovEmployeeCoursesListTeste({apiURLCourses}) {
     return (
         <div>
             <Container>
+                <NavigationBarGovEmployee />
+                <Row>
+                    <h2 className="mb-3 mt-3 text-muted">
+                        Bem-vindo, Servidor!
+                        <br />
+                    </h2>
+                    <h4 className="mb-4 text-muted">
+                        Aproveite os cursos de alto desempenho para a formação de habilidades
+                        nas várias áreas de conhecimento.
+                        <br /> <br />
+                    </h4>
+                    <h2 className="mb-4 text-muted">
+                    {" "}
+                        Confira os nossos cursos:
+                    </h2>
+                </Row>
                 <Row>
                     {isLoading && <Spinner animation="border" />} 
                     {renderCourses}
@@ -71,4 +77,4 @@ function GovEmployeeCoursesListTeste({apiURLCourses}) {
     );
 }
 
-export default GovEmployeeCoursesListTeste;
+export default GovEmployeeCoursesList;
