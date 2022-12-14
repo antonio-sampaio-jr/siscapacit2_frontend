@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-function NavigationBar() {
+function NavigationBarGovEmployee() {
   const location = useLocation();
 
   if (location.pathname === "/") {
@@ -22,25 +22,16 @@ function NavigationBar() {
             >
               HomePage
             </Link>
-            <Link
-              className="btn btn-outline-light btn-lg m-1"
-              role="button"
-              to="/listarServidores"
-            >
-              Servidores
-            </Link>
-            <Link
-              className="btn btn-outline-light btn-lg m-1"
-              role="button"
-              to="/listarCursos"
-            >
-              Cursos
-            </Link>
           </Nav>
+          <Nav.Link >
+          <Link  className="btn btn-outline-light btn-lg m-1"
+              role="button"
+          to="/listarCursosAluno" style={{ textDecoration: "none" }}>
+          Área do Aluno</Link></Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
 
-export default NavigationBar;
+export default NavigationBarGovEmployee;
