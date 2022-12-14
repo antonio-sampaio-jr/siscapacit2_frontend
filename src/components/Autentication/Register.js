@@ -5,13 +5,13 @@ import { toast } from "react-toastify";
 import axios from "axios";
 //import { api } from "../../api/api";
 
-function Register({ apiURL }) {
+function Register({ apiURL, apiURLAdmin  }) {
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    nome: "",
     email: "",
     senha: "",
-    confirmarSenha: "",
+    novaSenha:"",
+    perfil: "",
   });
 
   const handleChange = (e) => {
@@ -21,12 +21,19 @@ function Register({ apiURL }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let response;
     try {
-      await axios.post(apiURL+"/autentication/register", form);
 
-      navigate("/autentication/logar");
+      if (form.perfil === "1") //Admin
+      {
+        response = await axios.post(apiURLAdmin+"/alterarSenhaAdmin", form);
+      }  
+      else if (form.perfil === "2") //Servidor Público
+      {
+        response = await axios.post(apiURL+"/alterarSenhaServidor", form);
+      }
 
-      toast.success("Cadastro concluído com sucesso!", {
+      toast.success("Senha alterada com sucesso!", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -39,7 +46,7 @@ function Register({ apiURL }) {
     } catch (error) {
       console.log(error);
 
-      toast.error("Não foi possível fazer o cadastro", {
+      toast.error("Não foi possível alterar a senha", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -86,8 +93,8 @@ function Register({ apiURL }) {
           <Form.Label>Nova Senha</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Confirme a senha válida criada anteriormente"
-            name="confirmarSenha"
+            placeholder="Insira uma nova senha válida"
+            name="novaSenha"
             value={form.novaSenha}
             onChange={handleChange}
             required
@@ -96,7 +103,7 @@ function Register({ apiURL }) {
 
         <Form.Group className="mb-3">
           <Form.Label>Perfil</Form.Label>
-          <Form.Select aria-label="Perfil">
+          <Form.Select name="perfil" onChange={handleChange} aria-label="Perfil">
             <option>Selecione o Perfil:</option>
             <option value="1">Administrador</option>
             <option value="2">Servidor Público</option>
