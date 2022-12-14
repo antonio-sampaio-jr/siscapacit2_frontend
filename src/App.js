@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
@@ -20,14 +21,14 @@ import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
 import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetails";
 
 function App() {
-  
   const apiURLCourses = "https://siscapacit2-api.cyclic.app/cursos";
   const apiURL = "https://siscapacit2-api.cyclic.app/servidores";
   const apiURLAdmin = "https://siscapacit2-api.cyclic.app/administradores";
-  //comentário
+
+  //retirar a duplicação de navbar no perfil servidor
 
   const [form, setForm] = useState({
-    matricula: "", 
+    matricula: "",
     nome: "",
     foto: "",
     orgao: "",
@@ -65,13 +66,23 @@ function App() {
   return (
     <div className="App bg-light" style={{ height: "100vh" }}>
       <NavigationBar />
+      <ToastContainer />
       <Routes>
-        <Route path="/" element={<Login apiURL={apiURL} apiURLAdmin={apiURLAdmin}/>} />
-        <Route path="/register" element={<Register apiURL={apiURL}/>} />
+        <Route
+          path="/"
+          element={<Login apiURL={apiURL} apiURLAdmin={apiURLAdmin} />}
+        />
+        <Route path="/register" element={<Register apiURL={apiURL} />} />
 
-        <Route path="/listarCursosAluno" element={<GovEmployeeCoursesList apiURL={apiURLCourses}/>} />
-        <Route path="/listarCursoAluno/:idCurso/6398e1849a7cc8fb4d7f1d33" element={<GovEmployeeCourseDetails apiURL={apiURLCourses}/>} />
-        
+        <Route
+          path="/listarCursosAluno"
+          element={<GovEmployeeCoursesList apiURL={apiURLCourses} />}
+        />
+        <Route
+          path="/listarCursoAluno/:idCurso/6398e1849a7cc8fb4d7f1d33"
+          element={<GovEmployeeCourseDetails apiURL={apiURLCourses} />}
+        />
+
         <Route
           path="/listarServidores"
           element={<GovEmployeeList apiURL={apiURL} />}

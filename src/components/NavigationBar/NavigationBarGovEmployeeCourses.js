@@ -62,9 +62,4 @@ function NavigationBarGovEmployeeCourses(props) {
   );
 }
 
-/*   <Nav.Link href="#home">Aperfeiçoamento</Nav.Link>
-            <Nav.Link href="#features">Especialização</Nav.Link>
-            <Nav.Link href="#pricing">Mestrado</Nav.Link>
-            <Nav.Link href="#pricing">Doutorado</Nav.Link> */
-
 export default NavigationBarGovEmployeeCourses;

@@ -5,12 +5,47 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function GovEmployeeCourseDetails({ apiURLCourses }) {
   const [course, setCourse] = useState({});
-  const { id } = useParams();
+  const { idCurso, idServidor } = useParams();
   const navigate = useNavigate();
+
+  const matricularCurso = () => {
+    console.log(idCurso, idServidor);
+    axios
+      .put(
+        `https://siscapacit2-api.cyclic.app/cursos/matricularCurso/${idCurso}/${idServidor}/`,
+        {}
+      )
+      .then((res) => {
+        console.log(res);
+        alert("Matrícula feita com sucesso");
+      })
+      .catch(() => {
+        alert("Ops, algo deu errado.");
+      });
+  };
+
+  const desmatricularCurso = () => {
+    console.log(idCurso, idServidor);
+    axios
+      .put(
+        `https://siscapacit2-api.cyclic.app/cursos/desmatricularCurso/${idCurso}/${idServidor}/`,
+        {}
+      )
+      .then((res) => {
+        console.log(res);
+        alert("Matrícula feita com sucesso");
+      })
+      .catch(() => {
+        alert("Ops, algo deu errado.");
+      });
+  };
+
   useEffect(() => {
     try {
       const fetchCourse = async () => {
-        const response = await axios.get(`${apiURLCourses}/listarCurso/${id}`);
+        const response = await axios.get(
+          `https://siscapacit2-api.cyclic.app/cursos/listarCurso/${idCurso}`
+        );
         setCourse(response.data);
       };
 
@@ -18,7 +53,7 @@ function GovEmployeeCourseDetails({ apiURLCourses }) {
     } catch (error) {
       console.log(error);
     }
-  }, [id, apiURLCourses]);
+  }, [idCurso, apiURLCourses]);
 
   return (
     <Container
@@ -93,9 +128,8 @@ function GovEmployeeCourseDetails({ apiURLCourses }) {
           </Row>
           <Row className="mt-3">
             <Col>
-              <Button variant="secondary" onClick={() => navigate(-1)}>
-                Fazer Gio e Priscila :-) //Botão de Fazer ou de Desfazer Matrícula
-                Mostrar ou não o botão de "Fazer Matrícula"
+              <Button variant="secondary" onClick={() => matricularCurso()}>
+                Matricular-se
               </Button>
             </Col>
           </Row>

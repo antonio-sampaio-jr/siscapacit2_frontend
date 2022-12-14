@@ -4,18 +4,19 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavigationBarGovEmployee from "../NavigationBar/NavigationBarGovEmployee.js";
 import NavigationBarGovEmployeeCourses from "../NavigationBar/NavigationBarGovEmployeeCourses.js";
-// 1. Fazer Funcionar ;-)
+
+// 1. Fazer Funcionar ;-) app url courses não esta trazendo
 function GovEmployeeCoursesList({ apiURLCourses }) {
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(true);
 
-  const [tipo, setTipo] = useState("")
+  const [tipo, setTipo] = useState("");
   const [situacao, setSituacao] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(apiURLCourses+"/listarCursos");
+        const response = await axios.get(apiURLCourses + "/listarCursos");
         response.data.map((el) => {
           if (el.situacao == "Em andamento" || el.situacao == "Concluído") {
             el.situacao = "Inscrições Encerradas";
@@ -44,9 +45,11 @@ function GovEmployeeCoursesList({ apiURLCourses }) {
   return (
     <Container>
       <NavigationBarGovEmployee />
-      <NavigationBarGovEmployeeCourses setSituacao={setSituacao} setTipo={setTipo} />
+      <NavigationBarGovEmployeeCourses
+        setSituacao={setSituacao}
+        setTipo={setTipo}
+      />
       <Row>
-
         <h2 className="mb-3 mt-3 text-muted">
           Bem-vindo, Servidor!
           <br />
@@ -61,8 +64,11 @@ function GovEmployeeCoursesList({ apiURLCourses }) {
           Confira os cursos com inscrições abertas:
         </h2>
         {data.map((current) => {
-          console.log(tipo)
-          if (current.situacao.search(situacao) != -1 && current.tipo.search(tipo) != -1) {
+          console.log(tipo);
+          if (
+            current.situacao.search(situacao) != -1 &&
+            current.tipo.search(tipo) != -1
+          ) {
             return (
               <>
                 <Card
@@ -83,7 +89,7 @@ function GovEmployeeCoursesList({ apiURLCourses }) {
                         to={`/listarCursoAluno/${current._id}/6398e1849a7cc8fb4d7f1d33`} //incluir o id do Aluno
                         style={{ textDecoration: "none" }}
                       >
-                      {/** 2. Fazer funcionar */}
+                        {/** 2. Fazer funcionar o detalhamento do curso simulando um usuario */}
                         Saiba mais
                       </Link>
                     </Button>
