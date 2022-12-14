@@ -22,26 +22,38 @@ function NavBarServCourses(props) {
               <NavDropdown.Item onClick={() => props.setSituacao("")}>
                 Todos
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => props.setSituacao("Inscrições Abertas")}>
+              <NavDropdown.Item
+                onClick={() => props.setSituacao("Inscrições Abertas")}
+              >
                 Inscrições Abertas
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => props.setSituacao("Inscrições Encerradas")}>
+              <NavDropdown.Item
+                onClick={() => props.setSituacao("Inscrições Encerradas")}
+              >
                 Inscrições encerradas
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => props.setSituacao("Em breve")}>Em breve</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => props.setSituacao("Em breve")}>
+                Em breve
+              </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Por tipo" id="basic-nav-dropdown">
               <NavDropdown.Item onClick={() => props.setTipo("")}>
                 Todos
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => props.setTipo("Aperfeiçoamento")}>
+              <NavDropdown.Item
+                onClick={() => props.setTipo("Aperfeiçoamento")}
+              >
                 Aperfeiçoamento
               </NavDropdown.Item>
               <NavDropdown.Item onClick={() => props.setTipo("Especialização")}>
                 Especialização
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => props.setTipo("Mestrado")}>Mestrado</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => props.setTipo("Doutorado")}>Doutorado</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => props.setTipo("Mestrado")}>
+                Mestrado
+              </NavDropdown.Item>
+              <NavDropdown.Item onClick={() => props.setTipo("Doutorado")}>
+                Doutorado
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Container>
