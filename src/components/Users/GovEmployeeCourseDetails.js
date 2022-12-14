@@ -13,10 +13,10 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
   useEffect(() => {
     try {
       const fetchCourse = async () => {
-        const response = await axios.get(`${apiURLCourses}/listarCurso/${idCurso}`);
-        setCourse(response.data);
-        const responseAll = await axios.get(`${apiURL}/listarCursosServidor/${idGovEmployee}`);
-        setAllCourses(responseAll.data);
+      const response = await axios.get(`${apiURLCourses}/listarCurso/${idCurso}`);
+      setCourse(response.data);
+      const responseAll = await axios.get(`${apiURL}/listarCursosServidor/${idGovEmployee}`);
+      setAllCourses(responseAll.data);
       }
       fetchCourse();
     } 
@@ -32,13 +32,19 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
     });   
   },[allCourses]);
 
-  /*allCourses.forEach((course)=>{
-    console.log("=>"+course._id+"<=>"+idCurso);
-    if (course._id === idCurso)
-       setEncontrou(true);
-  }) */
+  const matricular = async () => {
+    /*const idServidor = localStorage.getItem("idServidor");
+    const idCurso = data._id;
+    await matricularCurso(idCurso, idServidor);
+    navigate("/pageServidor"); */
+  };
 
- // setEncontrou(allCourses.includes(course));
+  const desmatricular = async () => {
+    /* const idServidor = localStorage.getItem("idServidor");
+    const idCurso = data._id;
+    await matricularCurso(idCurso, idServidor);
+    navigate("/pageServidor"); */
+  };
 
   return (
     <Container
@@ -119,6 +125,25 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
                }
               </Button>
             </Col>
+          </Row>
+          <Row className="mt-3">
+          {
+              encontrou ? (
+                <Button
+                  className="p-4 mb-3"
+                  variant="warning"
+                  onClick={desmatricular}
+                >
+                  Cancelar Matrícula
+                </Button>
+                ) : (
+                <Button
+                 className="p-4 mb-3"
+                 variant="success"
+                 onClick={matricular}>
+                  Fazer Matrícula
+                </Button> )  
+          }     
           </Row>
           <Row className="mt-3">
             <Col>

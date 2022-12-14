@@ -20,6 +20,7 @@ import Register from "./components/Autentication/Register";
 import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetails";
 import "react-toastify/dist/ReactToastify.css";
 import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
+import GovEmployeeMyCourses from "./components/Users/GovEmployeeMyCourses";
 
 function App() {
   
@@ -75,6 +76,7 @@ function App() {
         <Route path="/listarCursosAluno" element={<GovEmployeeCoursesList apiURLCourses={apiURLCourses}/>} />
         <Route path="/listarCursoAluno/:idCurso/:idGovEmployee" element={<GovEmployeeCourseDetails apiURL={apiURL} apiURLCourses={apiURLCourses}/>} />
         
+        <Route path="/listarCursoAreaAluno/:idGovEmployee" element={<GovEmployeeMyCourses apiURL={apiURL}/>} />
         <Route
           path="/listarServidores"
           element={<GovEmployeeList apiURL={apiURL} />}
