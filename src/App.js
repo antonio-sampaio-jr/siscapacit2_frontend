@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
@@ -65,6 +66,7 @@ function App() {
   return (
     <div className="App bg-light" style={{ height: "100vh" }}>
       <NavigationBar />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Login apiURL={apiURL} apiURLAdmin={apiURLAdmin}/>} />
         <Route path="/register" element={<Register apiURL={apiURL}/>} />
