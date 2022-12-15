@@ -4,10 +4,9 @@ import { Button, Container, Form, FormLabel, Spinner, Table } from "react-bootst
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function GovEmployeeList_old({ apiURL }) {
+function GovEmployeeList({ apiURL }) {
     const [employees, setEmployees] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [encontrou, setEncontrou] = useState(false);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
@@ -30,20 +29,9 @@ function GovEmployeeList_old({ apiURL }) {
             navigate("/listarServidores");
     };
 
-    const getCoursesGovEmployee = async (idGovEmployee) => {
-        
-        const response = await axios.get(apiURL+`/listarCursosServidor/${idGovEmployee}`);
-        console.log("=>"+response.data.length);
-        if (response.data.length > 0)
-           setEncontrou(true);
-        else   
-           setEncontrou(false);
-    }; 
-
     const renderEmployees = employees
         .filter((employee) => employee.nome.toLowerCase().includes(search.toLowerCase()))
         .map((employee) => {
-            getCoursesGovEmployee(employee._id);
             return (
                 <tr key={employee._id}>
                     <td>
@@ -54,13 +42,6 @@ function GovEmployeeList_old({ apiURL }) {
                     <td>{employee.orgao}</td>
                     <td>{employee.lotacao}</td>
                     <td>{employee.email}</td>
-                    <td>
-                    {
-                        encontrou ? (
-                        <Link className="btn btn-outline-primary btn-sm m-1" role="button" to={`/listarCursosServidor/${employee._id}`}>Cursos Matriculados</Link>
-                        ) : ("Não Tem Cursos")  
-                    }     
-                    </td>
                     <td style={{width:'250px'}}>
                         <Link className="btn btn-outline-primary btn-sm m-1" role="button" to={`/listarServidor/${employee._id}`}>Detalhar</Link>
                         <Link className="btn btn-outline-secondary btn-sm m-1" role="button" to={`/editarServidor/${employee._id}`}>Alterar</Link>
@@ -68,7 +49,7 @@ function GovEmployeeList_old({ apiURL }) {
                     </td>
                 </tr>
             )
-            })
+        })
 
     return (
         <Container>
@@ -98,7 +79,6 @@ function GovEmployeeList_old({ apiURL }) {
                             <th>Órgão</th>
                             <th>Lotação</th>
                             <th>Email</th>
-                            <th>Cursos</th>
                              <th>Ações</th>
                         </tr>
                     </thead>
@@ -111,4 +91,4 @@ function GovEmployeeList_old({ apiURL }) {
     )
 }
 
-export default GovEmployeeList_old;
+export default GovEmployeeList;

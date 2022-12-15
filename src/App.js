@@ -7,7 +7,7 @@ import NavigationBar from "./components/NavigationBar/NavigationBar";
 import { useState } from "react";
 import Footer from "./components/Footer/Footer";
 import ErrorPage from "./pages/ErrorPage";
-//import GovEmployeeList from "./components/GovEmployee/GovEmployeeList/GovEmployeeList";
+import GovEmployeeList from "./components/GovEmployee/GovEmployeeList/GovEmployeeList";
 import GovEmployeeDetails from "./components/GovEmployee/GovEmployeeDetails/GovEmployeeDetails";
 import AddGovEmployee from "./components/GovEmployee/AddGovEmployee/AddGovEmployee";
 import EditGovEmployee from "./components/GovEmployee/EditGovEmployee/EditGovEmplyoee";
@@ -21,7 +21,8 @@ import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetail
 import "react-toastify/dist/ReactToastify.css";
 import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
 import GovEmployeeMyCourses from "./components/Users/GovEmployeeMyCourses";
-import GovEmployeeList_old from "./components/GovEmployee/GovEmployeeList/GovEmployeeList_old";
+import { AuthContext, AuthContextComponent } from "./contexts/authContext";
+import GovEmployeeListMyCourses from "./components/GovEmployee/GovEmployeeList/GovEmployeeListMyCourses";
 
 function App() {
   
@@ -68,6 +69,7 @@ function App() {
 
   return (
     <div className="App bg-light" style={{ height: "100vh" }}>
+      <AuthContextComponent>
       <NavigationBar />
       <ToastContainer />
       <Routes>
@@ -80,7 +82,11 @@ function App() {
         <Route path="/listarCursoAreaAluno/:idGovEmployee" element={<GovEmployeeMyCourses apiURL={apiURL}/>} />
         <Route
           path="/listarServidores"
-          element={<GovEmployeeList_old apiURL={apiURL} />}
+          element={<GovEmployeeList apiURL={apiURL} />}
+        />
+        <Route
+          path="/listarCursosServidor/:idGovEmployee"
+          element={<GovEmployeeListMyCourses apiURL={apiURL} />}
         />
         <Route
           path="/listarServidor/:id"
@@ -129,6 +135,7 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
+      </AuthContextComponent>
     </div>
   );
 }

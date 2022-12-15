@@ -4,9 +4,10 @@ import { Button, Container, Form, FormLabel, Spinner, Table } from "react-bootst
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function GovEmployeeList({ apiURL }) {
+function GovEmployeeList_old({ apiURL }) {
     const [employees, setEmployees] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [encontrou, setEncontrou] = useState(false);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ function GovEmployeeList({ apiURL }) {
     const deleteEmployee = async (id) => {
             await axios.delete(`${apiURL}/excluirServidor/${id}`);
             navigate("/listarServidores");
-    };
+    }; 
 
     const renderEmployees = employees
         .filter((employee) => employee.nome.toLowerCase().includes(search.toLowerCase()))
@@ -42,6 +43,13 @@ function GovEmployeeList({ apiURL }) {
                     <td>{employee.orgao}</td>
                     <td>{employee.lotacao}</td>
                     <td>{employee.email}</td>
+                    <td>
+                    {
+                        employee.courses.length ? (
+                        <Link className="btn btn-outline-primary btn-sm m-1" role="button" to={`/listarCursosServidor/${employee._id}`}>Cursos Matriculados</Link>
+                        ) : ("Não Tem Cursos")  
+                    }     
+                    </td>
                     <td style={{width:'250px'}}>
                         <Link className="btn btn-outline-primary btn-sm m-1" role="button" to={`/listarServidor/${employee._id}`}>Detalhar</Link>
                         <Link className="btn btn-outline-secondary btn-sm m-1" role="button" to={`/editarServidor/${employee._id}`}>Alterar</Link>
@@ -49,7 +57,7 @@ function GovEmployeeList({ apiURL }) {
                     </td>
                 </tr>
             )
-        })
+            })
 
     return (
         <Container>
@@ -79,6 +87,7 @@ function GovEmployeeList({ apiURL }) {
                             <th>Órgão</th>
                             <th>Lotação</th>
                             <th>Email</th>
+                            <th>Cursos</th>
                              <th>Ações</th>
                         </tr>
                     </thead>
@@ -91,4 +100,4 @@ function GovEmployeeList({ apiURL }) {
     )
 }
 
-export default GovEmployeeList;
+export default GovEmployeeList_old;
