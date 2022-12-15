@@ -28,8 +28,11 @@ function GovEmployeeMyCourses({apiURL}) {
   const renderCoursesInscAbertas = coursesInscAbertas.map((course)=>{
       return(
       <>
+      <Col>
+        
+      
       <Card key={course._id}
-      className="mb-3 mt-3 p-2 m-4 bg-light text-dark"
+      className="mb-3 mt-3 p-2 m-4 bg-light text-dark "
       style={{ width: "19rem" }}
       >
           <Card.Img variant="top" src={course.foto} />
@@ -40,6 +43,7 @@ function GovEmployeeMyCourses({apiURL}) {
               </Card.Subtitle>
       </Card.Body>
       </Card>
+      </Col>
   </>)});
 
   const coursesAndamento = allCourses.filter(course=>
