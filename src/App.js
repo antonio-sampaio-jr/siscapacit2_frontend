@@ -7,7 +7,7 @@ import NavigationBar from "./components/NavigationBar/NavigationBar";
 import { useState } from "react";
 import Footer from "./components/Footer/Footer";
 import ErrorPage from "./pages/ErrorPage";
-import GovEmployeeList from "./components/GovEmployee/GovEmployeeList/GovEmployeeList";
+//import GovEmployeeList from "./components/GovEmployee/GovEmployeeList/GovEmployeeList";
 import GovEmployeeDetails from "./components/GovEmployee/GovEmployeeDetails/GovEmployeeDetails";
 import AddGovEmployee from "./components/GovEmployee/AddGovEmployee/AddGovEmployee";
 import EditGovEmployee from "./components/GovEmployee/EditGovEmployee/EditGovEmplyoee";
@@ -21,6 +21,7 @@ import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetail
 import "react-toastify/dist/ReactToastify.css";
 import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
 import GovEmployeeMyCourses from "./components/Users/GovEmployeeMyCourses";
+import GovEmployeeList_old from "./components/GovEmployee/GovEmployeeList/GovEmployeeList_old";
 
 function App() {
   
@@ -79,7 +80,7 @@ function App() {
         <Route path="/listarCursoAreaAluno/:idGovEmployee" element={<GovEmployeeMyCourses apiURL={apiURL}/>} />
         <Route
           path="/listarServidores"
-          element={<GovEmployeeList apiURL={apiURL} />}
+          element={<GovEmployeeList_old apiURL={apiURL} />}
         />
         <Route
           path="/listarServidor/:id"
