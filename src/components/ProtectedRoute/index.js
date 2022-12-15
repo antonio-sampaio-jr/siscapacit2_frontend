@@ -8,11 +8,15 @@ export function ProtectedRoute({Component}) {
 
   const parsedUser = JSON.parse(loggedInUser || '""');
 
+  console.log("=>"+parsedUser);
+
   useEffect(() => {
-    if (!parsedUser) {
-      navigate("/login");
+    console.log(parsedUser);
+    if (parsedUser.msg !== "OkGovEmployee") {
+      navigate("/");
     }
   }, []);
+
 
   return <Component />;
 }
