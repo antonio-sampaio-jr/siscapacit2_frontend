@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -64,8 +64,13 @@ function Register({ apiURL, apiURLAdmin  }) {
       style={{ height: "100vh" }}
       className="d-flex flex-column align-items-center justify-content-center"
     >
-      <Form className="w-50" onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+        <Card className="text-center blue " style={{ width: "50rem" }}>
+        <Card.Header className="fs-2 p-3 mb-2 bg-primary text-white">
+          {" "}
+          SISCAPACIT{" "}
+        </Card.Header>
+      <Form  onSubmit={handleSubmit}  style={{ width: "100%" }}className=" d-flex flex-column align-items-center justify-content-center">
+        <Form.Group className="mb-3" style={{ width: "70%" }}>
           <Form.Label>Endereço de e-mail</Form.Label>
           <Form.Control
             type="email"
@@ -77,7 +82,7 @@ function Register({ apiURL, apiURLAdmin  }) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" style={{ width: "70%" }}>
           <Form.Label>Senha Atual</Form.Label>
           <Form.Control
             type="password"
@@ -89,7 +94,7 @@ function Register({ apiURL, apiURLAdmin  }) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3"  style={{ width: "70%" }}>
           <Form.Label>Nova Senha</Form.Label>
           <Form.Control
             type="password"
@@ -101,7 +106,7 @@ function Register({ apiURL, apiURLAdmin  }) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" style={{ width: "70%" }}>
           <Form.Label>Perfil</Form.Label>
           <Form.Select name="perfil" onChange={handleChange} aria-label="Perfil">
             <option>Selecione o Perfil:</option>
@@ -122,6 +127,7 @@ function Register({ apiURL, apiURLAdmin  }) {
         </Link>
         .
       </Form.Text>
+      </Card>
     </Container>
   );
 }

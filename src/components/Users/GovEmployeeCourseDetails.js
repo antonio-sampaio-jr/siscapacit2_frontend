@@ -127,10 +127,13 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
             </Col>
           </Row>
           <Row className="mt-3">
+          <Col>
           {
               encontrou ? (
+                
+
                 <Button
-                  className="p-4 mb-3"
+                  className="mt-3"
                   variant="warning"
                   onClick={desmatricular}
                 >
@@ -138,12 +141,13 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
                 </Button>
                 ) : (
                 <Button
-                 className="p-4 mb-3"
+                 className="mt-3"
                  variant="success"
                  onClick={matricular}>
                   Fazer Matrícula
                 </Button> )  
-          }     
+          }
+          </Col>     
           </Row>
           <Row className="mt-3">
             <Col>
