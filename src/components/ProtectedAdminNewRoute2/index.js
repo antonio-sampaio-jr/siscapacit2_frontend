@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function ProtectedAdminNewRoute2({Component,apiURL,form,setForm}) {
+export function ProtectedAdminNewRoute2({Component,apiURLCourses}) {
   
   const navigate = useNavigate();
 
@@ -15,5 +15,5 @@ export function ProtectedAdminNewRoute2({Component,apiURL,form,setForm}) {
     }
   }, []);
 
-  return <Component apiURL={apiURL} form={form} setForm={setForm}/>;
+  return <Component apiURLCourses={apiURLCourses} />;
 }
