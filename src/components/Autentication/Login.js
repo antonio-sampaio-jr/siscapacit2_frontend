@@ -70,10 +70,14 @@ function Login({ apiURL, apiURLAdmin }) {
       style={{ height: "100vh" }}
       className="d-flex flex-column align-items-center justify-content-center"
     >
+    <div>
+      <img src= "https://suap.enap.gov.br/static/assets/images/logo.svg" style={{ marginRight:" 38rem ", width: "6rem" }}/>
+      <img src= "https://www.gov.br/governodigital/pt-br/transformacao-digital/10passos/biblioteca/logo-govbr.png/@@images/image" style={{ width: "6rem" }}/>
+    </div>
       <Card className="text-center blue " style={{ width: "50rem" }}>
         <Card.Header className="fs-2 p-3 mb-2 bg-primary text-white">
           {" "}
-          SISCAPACIT{" "}
+          SisCAPACIT 2.0{" "}
         </Card.Header>
         <Form onSubmit={handleSubmit}  style={{ width: "100%" }}className=" d-flex flex-column align-items-center justify-content-center">
           <Form.Group className="mb-3 " style={{ width: "70%" }}>
@@ -100,18 +104,14 @@ function Login({ apiURL, apiURLAdmin }) {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" style={{ width: "70%" }}>
-            <Form.Label>Perfil</Form.Label>
-            <Form.Select
-              name="perfil"
-              onChange={handleChange}
-              aria-label="Perfil"
-            >
-              <option>Selecione o Perfil:</option>
-              <option value="1">Administrador</option>
-              <option value="2">Servidor Público</option>
-            </Form.Select>
-          </Form.Group>
+        <Form.Group className="mb-3"style={{ width: "70%" }}>
+          <Form.Label>Perfil</Form.Label>
+          <Form.Select name="perfil" onChange={handleChange} aria-label="Perfil">
+            <option>Selecione o Perfil:</option>
+            <option value="1">Administrador</option>
+            <option value="2">Servidor Público</option>
+          </Form.Select>  
+        </Form.Group>
 
           <Button className="my-3" variant="dark" type="submit">
             Entrar no Sistema
