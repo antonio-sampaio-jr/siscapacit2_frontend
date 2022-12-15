@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function ProtectedRoute({Component,apiURL}) {
+export function ProtectedAdminNewRoute2({Component,apiURL,form,setForm}) {
+  
   const navigate = useNavigate();
 
   const loggedInUser = localStorage.getItem("loggedUser");
@@ -9,12 +10,10 @@ export function ProtectedRoute({Component,apiURL}) {
   const parsedUser = JSON.parse(loggedInUser || '""');
 
   useEffect(() => {
-    console.log(parsedUser);
-    if (parsedUser.msg !== "OkGovEmployee") {
+    if (parsedUser.msg !== "OkAdmin") {
       navigate("/");
     }
   }, []);
 
-
-  return <Component apiURL={apiURL} />;
+  return <Component apiURL={apiURL} form={form} setForm={setForm}/>;
 }

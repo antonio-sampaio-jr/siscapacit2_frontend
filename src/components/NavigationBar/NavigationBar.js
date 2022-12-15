@@ -1,16 +1,22 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {AuthContext} from "../../contexts/authContext.js";
 import {useContext} from "react";
 
 function NavigationBar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const {loggedUser} = useContext(AuthContext); 
 
   if (location.pathname === "/") {
     return null;
   }
-  
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedUser");
+    navigate("/");
+  };
+  console.log(loggedUser);
   return (
     <>
     {
@@ -44,6 +50,9 @@ function NavigationBar() {
             >
               Cursos
             </Link>
+            <Button variant="danger" onClick={handleLogout}>
+                Logout
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -70,6 +79,9 @@ function NavigationBar() {
           to="/listarCursosAluno" style={{ textDecoration: "none" }}>
           Área do Aluno</Link></Nav.Link>
         </Navbar.Collapse>
+        <Button variant="danger" onClick={handleLogout}>
+                Logout
+        </Button>
       </Container>
     </Navbar>
   )

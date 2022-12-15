@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function ProtectedRoute({Component,apiURL}) {
+export function ProtectedNewRoute({Component,apiURLCourses}) {
   const navigate = useNavigate();
 
   const loggedInUser = localStorage.getItem("loggedUser");
 
   const parsedUser = JSON.parse(loggedInUser || '""');
+
+  console.log("***"+apiURLCourses);
 
   useEffect(() => {
     console.log(parsedUser);
@@ -16,5 +18,5 @@ export function ProtectedRoute({Component,apiURL}) {
   }, []);
 
 
-  return <Component apiURL={apiURL} />;
+  return <Component apiURLCourses={apiURLCourses} />;
 }
