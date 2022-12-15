@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Button, Container, Form, Card } from "react-bootstrap";
+import { Button, Container, Form, Card, Row, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 //import { api } from "../../api/api";
 
-function Register({ apiURL, apiURLAdmin  }) {
+function Register({ apiURL, apiURLAdmin }) {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     senha: "",
-    novaSenha:"",
+    novaSenha: "",
     perfil: "",
   });
 
@@ -23,14 +23,12 @@ function Register({ apiURL, apiURLAdmin  }) {
 
     let response;
     try {
-
-      if (form.perfil === "1") //Admin
-      {
-        response = await axios.post(apiURLAdmin+"/alterarSenhaAdmin", form);
-      }  
-      else if (form.perfil === "2") //Servidor Público
-      {
-        response = await axios.post(apiURL+"/alterarSenhaServidor", form);
+      if (form.perfil === "1") {
+        //Admin
+        response = await axios.post(apiURLAdmin + "/alterarSenhaAdmin", form);
+      } else if (form.perfil === "2") {
+        //Servidor Público
+        response = await axios.post(apiURL + "/alterarSenhaServidor", form);
       }
 
       toast.success("Senha alterada com sucesso!", {
@@ -64,69 +62,88 @@ function Register({ apiURL, apiURLAdmin  }) {
       style={{ height: "100vh" }}
       className="d-flex flex-column align-items-center justify-content-center"
     >
-        <Card className="text-center blue " style={{ width: "50rem" }}>
+      <div>
+        <img
+          src="https://suap.enap.gov.br/static/assets/images/logo.svg"
+          style={{ marginRight: " 38rem ", width: "6rem" }}
+        />
+        <img
+          src="https://www.gov.br/governodigital/pt-br/transformacao-digital/10passos/biblioteca/logo-govbr.png/@@images/image"
+          style={{ width: "6rem" }}
+        />
+      </div>
+      <Card className="text-center blue " style={{ width: "50rem" }}>
         <Card.Header className="fs-2 p-3 mb-2 bg-primary text-white">
           {" "}
-          SISCAPACIT{" "}
+          SisCAPACIT 2.0 {" "}
         </Card.Header>
-      <Form  onSubmit={handleSubmit}  style={{ width: "100%" }}className=" d-flex flex-column align-items-center justify-content-center">
-        <Form.Group className="mb-3" style={{ width: "70%" }}>
-          <Form.Label>Endereço de e-mail</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Insira o seu melhor endereço de e-mail"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+        <Form
+          onSubmit={handleSubmit}
+          style={{ width: "100%" }}
+          className=" d-flex flex-column align-items-center justify-content-center"
+        >
+          <Form.Group className="mb-3" style={{ width: "70%" }}>
+            <Form.Label>Endereço de e-mail</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Insira o seu melhor endereço de e-mail"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" style={{ width: "70%" }}>
-          <Form.Label>Senha Atual</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Insira uma senha válida"
-            name="senha"
-            value={form.senha}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          <Form.Group className="mb-3" style={{ width: "70%" }}>
+            <Form.Label>Senha Atual</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Insira uma senha válida"
+              name="senha"
+              value={form.senha}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3"  style={{ width: "70%" }}>
-          <Form.Label>Nova Senha</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Insira uma nova senha válida"
-            name="novaSenha"
-            value={form.novaSenha}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          <Form.Group className="mb-3" style={{ width: "70%" }}>
+            <Form.Label>Nova Senha</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Insira uma nova senha válida"
+              name="novaSenha"
+              value={form.novaSenha}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" style={{ width: "70%" }}>
-          <Form.Label>Perfil</Form.Label>
-          <Form.Select name="perfil" onChange={handleChange} required aria-label="Perfil">
-            <option>Selecione o Perfil:</option>
-            <option value="1">Administrador</option>
-            <option value="2">Servidor Público</option>
-          </Form.Select>  
-        </Form.Group>
+          <Form.Group className="mb-3" style={{ width: "70%" }}>
+            <Form.Label>Perfil</Form.Label>
+            <Form.Select
+              name="perfil"
+              onChange={handleChange}
+              required
+              aria-label="Perfil"
+            >
+              <option>Selecione o Perfil:</option>
+              <option value="1">Administrador</option>
+              <option value="2">Servidor Público</option>
+            </Form.Select>
+          </Form.Group>
 
-        <Button className="my-3" variant="dark" type="submit">
-          Alterar Senha
-        </Button>
-      </Form>
-      <Form.Text>
-        Senha já alterada? Então, faça o seu 
-        <Link className="text-warning fw-bold text-decoration-none" to="/">
-          {" "}
-          Login
-        </Link>
-        .
-      </Form.Text>
+          <Button className="my-3" variant="dark" type="submit">
+            Alterar Senha
+          </Button>
+        </Form>
+        <Form.Text>
+          Senha já alterada? Então, faça o seu
+          <Link className="text-warning fw-bold text-decoration-none" to="/">
+            {" "}
+            Login
+          </Link>
+          .
+        </Form.Text>
       </Card>
     </Container>
   );
