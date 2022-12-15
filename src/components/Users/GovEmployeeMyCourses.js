@@ -89,24 +89,37 @@ function GovEmployeeMyCourses({apiURL}) {
 
 
   return (
-    <Container>
+    <Container
+    style={{ height: "120vh" }}
+    className=" justify-content-center align-items-center"
+  >   <p />
+      <p />
       <Row >
+       <Col>
         {
           renderCoursesInscAbertas.length>0 && (<><h2>Cursos com Inscrições Abertas</h2>
           {renderCoursesInscAbertas}</>)
         }           
-      </Row>
-      <Row >
+      </Col>
+      <Col>
         {
           renderCoursesAndamento.length>0 && (<><h2>Cursos Em Andamento</h2>
           {renderCoursesAndamento}</>)
         }           
-      </Row>
-      <Row >
+      </Col>
+      <Col >
         {
           renderCoursesConcluidos.length>0 && (<><h2>Cursos Concluídos</h2>
           {renderCoursesConcluidos}</>)
         }           
+      </Col>
+      </Row>
+      <Row>
+         <Col>
+              <Button variant="secondary" onClick={() => navigate(-1)}>
+                Voltar
+              </Button>
+         </Col>     
       </Row>
     </Container>
   );

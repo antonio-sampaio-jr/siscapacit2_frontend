@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Card, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import NavigationBarGovEmployee from '../NavigationBar/NavigationBarGovEmployee';
 
 function GovEmployeeCoursesList({apiURLCourses}) {
 
@@ -52,6 +51,12 @@ function GovEmployeeCoursesList({apiURLCourses}) {
     return (
         <div>
             <Container>
+                <Row>
+                    <Link  className="btn btn-lg m-1"
+                        role="button"
+                        to={`/listarCursoAreaAluno/${idServidor}`} style={{ textDecoration: "none" }}>
+                    Área do Aluno</Link>
+                </Row>
                 <Row>
                     <h2 className="mb-3 mt-3 text-muted">
                         Bem-vindo, Servidor!

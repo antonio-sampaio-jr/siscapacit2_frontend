@@ -52,6 +52,13 @@ function GovEmployeeListMyCourses({apiURL}) {
           renderCourses
         }           
       </Row>
+      <Row>
+         <Col>
+              <Button variant="secondary" onClick={() => navigate(-1)}>
+                Voltar
+              </Button>
+         </Col>     
+      </Row>
     </Container>
   );
 }

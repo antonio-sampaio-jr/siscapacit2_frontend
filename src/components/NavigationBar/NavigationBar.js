@@ -73,11 +73,6 @@ function NavigationBar() {
               HomePage
             </Link>
           </Nav>
-          <Nav.Link >
-          <Link  className="btn btn-outline-light btn-lg m-1"
-              role="button"
-          to="/listarCursosAluno" style={{ textDecoration: "none" }}>
-          Área do Aluno</Link></Nav.Link>
         </Navbar.Collapse>
         <Button variant="danger" onClick={handleLogout}>
                 Logout

@@ -50,7 +50,7 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
 
   return (
     <Container
-      style={{ height: "100vh" }}
+      style={{ height: "120vh" }}
       className="d-flex justify-content-center align-items-center"
     >
       <Card className="text-center w-100">
