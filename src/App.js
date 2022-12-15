@@ -24,6 +24,7 @@ import GovEmployeeMyCourses from "./components/Users/GovEmployeeMyCourses";
 import { AuthContext, AuthContextComponent } from "./contexts/authContext";
 import GovEmployeeListMyCourses from "./components/GovEmployee/GovEmployeeList/GovEmployeeListMyCourses";
 import { ProtectedAdminRoute } from "./components/ProtectedAdminRoute";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   
@@ -79,47 +80,46 @@ function App() {
         <Route path="/register" element={<Register apiURL={apiURL}/>} />
 
         {/* Rotas do Servidor Público Autenticado */}
-        <Route path="/listarCursosAluno" element={<GovEmployeeCoursesList apiURLCourses={apiURLCourses}/>} />
-        <Route path="/listarCursoAluno/:idCurso/:idGovEmployee" element={<GovEmployeeCourseDetails apiURL={apiURL} apiURLCourses={apiURLCourses}/>} />
-        <Route path="/listarCursoAreaAluno/:idGovEmployee" element={<GovEmployeeMyCourses apiURL={apiURL}/>} />
+        <Route path="/listarCursosAluno" element={<ProtectedRoute Component={GovEmployeeCoursesList} apiURLCourses={apiURLCourses}/>} />
+        <Route path="/listarCursoAluno/:idCurso/:idGovEmployee" element={<ProtectedRoute Component={GovEmployeeCourseDetails} apiURL={apiURL} apiURLCourses={apiURLCourses}/>} />
+        <Route path="/listarCursoAreaAluno/:idGovEmployee" element={<ProtectedRoute Component={GovEmployeeMyCourses} apiURL={apiURL}/>} />
         
         {/* Rotas do Administrador Autenticado */}
         <Route
           path="/listarServidores"
-          element={<ProtectedAdminRoute Component={GovEmployeeList} apiURL={apiURL}  />} />
+          element={<ProtectedAdminRoute Component={GovEmployeeList} apiURL={apiURL} />} />
      
         <Route
           path="/listarCursosServidor/:idGovEmployee"
-          element={<GovEmployeeListMyCourses apiURL={apiURL} />}
+          element={<ProtectedAdminRoute Component={GovEmployeeListMyCourses} apiURL={apiURL} />}
         />
         <Route
           path="/listarServidor/:id"
-          element={<GovEmployeeDetails apiURL={apiURL} />}
+          element={<ProtectedAdminRoute Component={GovEmployeeDetails} apiURL={apiURL} />}
         />
         <Route
           path="/cadastrarServidor"
-          element={
-            <AddGovEmployee apiURL={apiURL} form={form} setForm={setForm} />
+          element={<ProtectedAdminRoute Component={AddGovEmployee} apiURL={apiURL} form={form} setForm={setForm} />
           }
         />
         <Route
           path="/editarServidor/:id"
           element={
-            <EditGovEmployee apiURL={apiURL} form={form} setForm={setForm} />
+            <ProtectedAdminRoute Component={EditGovEmployee} apiURL={apiURL} form={form} setForm={setForm} />
           }
         />
         <Route
           path="/listarCursos"
-          element={<CourseList apiURLCourses={apiURLCourses} />}
+          element={<ProtectedAdminRoute Component={CourseList} apiURLCourses={apiURLCourses} />}
         />
         <Route
           path="/listarCurso/:id"
-          element={<CourseDetails apiURLCourses={apiURLCourses} />}
+          element={<ProtectedAdminRoute Component={CourseDetails} apiURLCourses={apiURLCourses} />}
         />
         <Route
           path="/cadastrarCurso"
           element={
-            <AddCourse
+            <ProtectedAdminRoute Component={AddCourse}
               apiURLCourses={apiURLCourses}
               formCourses={formCourses}
               setFormCourses={setFormCourses}
@@ -129,7 +129,7 @@ function App() {
         <Route
           path="/editarCurso/:id"
           element={
-            <EditCourse
+            <ProtectedAdminRoute Component={EditCourse}
               apiURLCourses={apiURLCourses}
               formCourses={formCourses}
               setFormCourses={setFormCourses}

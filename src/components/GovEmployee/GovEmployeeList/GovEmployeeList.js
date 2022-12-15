@@ -4,7 +4,7 @@ import { Button, Container, Form, FormLabel, Spinner, Table } from "react-bootst
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function GovEmployeeList_old({ apiURL }) {
+function GovEmployeeList({ apiURL }) {
     const [employees, setEmployees] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [encontrou, setEncontrou] = useState(false);
@@ -100,4 +100,4 @@ function GovEmployeeList_old({ apiURL }) {
     )
 }
 
-export default GovEmployeeList_old;
+export default GovEmployeeList;
