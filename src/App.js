@@ -23,6 +23,7 @@ import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
 import GovEmployeeMyCourses from "./components/Users/GovEmployeeMyCourses";
 import { AuthContext, AuthContextComponent } from "./contexts/authContext";
 import GovEmployeeListMyCourses from "./components/GovEmployee/GovEmployeeList/GovEmployeeListMyCourses";
+import { ProtectedAdminRoute } from "./components/ProtectedAdminRoute";
 
 function App() {
   
@@ -70,20 +71,23 @@ function App() {
   return (
     <div className="App bg-light" style={{ height: "100vh" }}>
       <AuthContextComponent>
-      <NavigationBar />
       <ToastContainer />
+      <NavigationBar />
       <Routes>
+        {/* Rotas Abertas */}
         <Route path="/" element={<Login apiURL={apiURL} apiURLAdmin={apiURLAdmin}/>} />
         <Route path="/register" element={<Register apiURL={apiURL}/>} />
 
+        {/* Rotas do Servidor Público Autenticado */}
         <Route path="/listarCursosAluno" element={<GovEmployeeCoursesList apiURLCourses={apiURLCourses}/>} />
         <Route path="/listarCursoAluno/:idCurso/:idGovEmployee" element={<GovEmployeeCourseDetails apiURL={apiURL} apiURLCourses={apiURLCourses}/>} />
-        
         <Route path="/listarCursoAreaAluno/:idGovEmployee" element={<GovEmployeeMyCourses apiURL={apiURL}/>} />
+        
+        {/* Rotas do Administrador Autenticado */}
         <Route
           path="/listarServidores"
-          element={<GovEmployeeList apiURL={apiURL} />}
-        />
+          element={<ProtectedAdminRoute Component={GovEmployeeList} apiURL={apiURL}  />} />
+     
         <Route
           path="/listarCursosServidor/:idGovEmployee"
           element={<GovEmployeeListMyCourses apiURL={apiURL} />}

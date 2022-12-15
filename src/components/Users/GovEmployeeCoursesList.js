@@ -52,7 +52,6 @@ function GovEmployeeCoursesList({apiURLCourses}) {
     return (
         <div>
             <Container>
-                <NavigationBarGovEmployee />
                 <Row>
                     <h2 className="mb-3 mt-3 text-muted">
                         Bem-vindo, Servidor!
