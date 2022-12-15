@@ -75,7 +75,7 @@ function Register({ apiURL, apiURLAdmin }) {
       <Card className="text-center blue " style={{ width: "50rem" }}>
         <Card.Header className="fs-2 p-3 mb-2 bg-primary text-white">
           {" "}
-          SisCAPACIT {" "}
+          SisCAPACIT 2.0 {" "}
         </Card.Header>
         <Form
           onSubmit={handleSubmit}
