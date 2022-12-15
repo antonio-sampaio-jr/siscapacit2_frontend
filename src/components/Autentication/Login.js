@@ -2,13 +2,13 @@ import { useState, useContext } from "react";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-//import { api } from "../../api/api.js";
+import { api } from "../../api/api.js";
 import axios from "axios";
-//import { AuthContext } from "../../contexts/authContext.js";
+import { AuthContext } from "../../contexts/authContext.js";
 
 function Login({ apiURL, apiURLAdmin }) {
   const navigate = useNavigate();
-  //const { setLoggedUser } = useContext(AuthContext);
+  const { setLoggedUser } = useContext(AuthContext);
   const [form, setForm] = useState({
     email: "",
     senha: "",
@@ -25,19 +25,20 @@ function Login({ apiURL, apiURLAdmin }) {
     try {
       if (form.perfil === "1") {
         //Admin
-        response = await axios.post(apiURLAdmin + "/autenticarAdmin", form);
+        response = await api.post("/administradores/autenticarAdmin", form);
       } else if (form.perfil === "2") {
         //Servidor Público
-        response = await axios.post(apiURL + "/autenticarServidor", form);
+        response = await api.post("/servidores/autenticarServidor", form);
       }
+      console.log(response);
+      setLoggedUser({ ...response.data });
+      localStorage.setItem("loggedUser", JSON.stringify(response.data));
 
-      //setLoggedUser({ ...response.data });
-      //localStorage.setItem("loggedUser", JSON.stringify(response.data));
-
-      if (response.data.msg === "OkAdmin") navigate("/listarServidores");
+     /* if (response.data.msg === "OkAdmin") 
+         navigate("/listarServidores");
       else if (response.data.msg === "OkGovEmployee")
-        navigate("/listarCursosAluno");
-      else navigate("/");
+         navigate("/listarCursosAluno");
+      else navigate("/"); */
 
       toast.success("Login realizado com sucesso", {
         position: "top-right",
@@ -104,8 +105,9 @@ function Login({ apiURL, apiURLAdmin }) {
             <Form.Label>Perfil</Form.Label>
             <Form.Select
               name="perfil"
+              value={form.perfil}
               onChange={handleChange}
-              aria-label="Perfil"
+              aria-label="Perfil" 
             >
               <option>Selecione o Perfil:</option>
               <option value="1">Administrador</option>
