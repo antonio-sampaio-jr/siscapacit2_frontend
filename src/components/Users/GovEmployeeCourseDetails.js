@@ -38,16 +38,14 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
     await axios.put(
       `${apiURLCourses}/matricularCurso/${idCurso}/${idGovEmployee}`
     );
-    document.location.reload(true);
-    //navigate("/pageServidor");
+    navigate(`/listarCursoAluno/${idCurso}/${idGovEmployee}`);
   };
 
   const desmatricular = async () => {
     await axios.put(
       `${apiURLCourses}/desmatricularCurso/${idCurso}/${idGovEmployee}`
     );
-    document.location.reload(true);
-    //navigate("/pageServidor");
+    navigate(`/listarCursoAluno/${idCurso}/${idGovEmployee}`);
   };
 
   return (
