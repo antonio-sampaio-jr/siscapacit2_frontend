@@ -75,7 +75,7 @@ function GovEmployeeMyCourses({apiURL}) {
       <>
       <Card key={course._id}
       className="mb-3 mt-3 p-2 m-4 bg-light text-dark"
-      style={{ width: "19rem" }}
+      style={{ width: "19rem", align:"center"}}
       >
           <Card.Img variant="top" src={course.foto} />
           <Card.Body>
@@ -90,25 +90,24 @@ function GovEmployeeMyCourses({apiURL}) {
 
   return (
     <Container>
-      <Row>           
-        <h2 className="mb-4 text-muted">
-            Cursos Com Inscrições Abertas:
-            {renderCoursesInscAbertas}
-        </h2>
+      <Row >
+        {
+          renderCoursesInscAbertas.length>0 && (<><h2>Cursos com Inscrições Abertas</h2>
+          {renderCoursesInscAbertas}</>)
+        }           
       </Row>
-      <Row>           
-        <h2 className="mb-4 text-muted">
-            Cursos Em Andamento:
-            {renderCoursesAndamento}
-        </h2>
+      <Row >
+        {
+          renderCoursesAndamento.length>0 && (<><h2>Cursos Em Andamento</h2>
+          {renderCoursesAndamento}</>)
+        }           
       </Row>
-      <Row>           
-        <h2 className="mb-4 text-muted">
-            Cursos Concluídas:
-            {renderCoursesConcluidos}
-        </h2>
+      <Row >
+        {
+          renderCoursesConcluidos.length>0 && (<><h2>Cursos Concluídos</h2>
+          {renderCoursesConcluidos}</>)
+        }           
       </Row>
-
     </Container>
   );
 }

@@ -108,7 +108,7 @@ function Register({ apiURL, apiURLAdmin  }) {
 
         <Form.Group className="mb-3" style={{ width: "70%" }}>
           <Form.Label>Perfil</Form.Label>
-          <Form.Select name="perfil" onChange={handleChange} aria-label="Perfil">
+          <Form.Select name="perfil" onChange={handleChange} required aria-label="Perfil">
             <option>Selecione o Perfil:</option>
             <option value="1">Administrador</option>
             <option value="2">Servidor Público</option>

@@ -7,43 +7,47 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
   const [course, setCourse] = useState({});
   const [encontrou, setEncontrou] = useState(false);
   const [allCourses, setAllCourses] = useState([]);
-  const { idCurso,  idGovEmployee } = useParams();
+  const { idCurso, idGovEmployee } = useParams();
 
   const navigate = useNavigate();
   useEffect(() => {
     try {
       const fetchCourse = async () => {
-      const response = await axios.get(`${apiURLCourses}/listarCurso/${idCurso}`);
-      setCourse(response.data);
-      const responseAll = await axios.get(`${apiURL}/listarCursosServidor/${idGovEmployee}`);
-      setAllCourses(responseAll.data);
-      }
+        const response = await axios.get(
+          `${apiURLCourses}/listarCurso/${idCurso}`
+        );
+        setCourse(response.data);
+        const responseAll = await axios.get(
+          `${apiURL}/listarCursosServidor/${idGovEmployee}`
+        );
+        setAllCourses(responseAll.data);
+      };
       fetchCourse();
-    } 
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
-  },[idCurso, apiURLCourses]);
+  }, [idCurso, apiURLCourses]);
 
   useEffect(() => {
-    allCourses.forEach((course)=>{
-      if (course._id === idCurso)
-        setEncontrou(true);
-    });   
-  },[allCourses]);
+    allCourses.forEach((course) => {
+      if (course._id === idCurso) setEncontrou(true);
+    });
+  }, [allCourses]);
 
   const matricular = async () => {
-    /*const idServidor = localStorage.getItem("idServidor");
-    const idCurso = data._id;
-    await matricularCurso(idCurso, idServidor);
-    navigate("/pageServidor"); */
+    await axios.put(
+      `${apiURLCourses}/matricularCurso/${idCurso}/${idGovEmployee}`
+    );
+    document.location.reload(true);
+    //navigate("/pageServidor");
   };
 
   const desmatricular = async () => {
-    /* const idServidor = localStorage.getItem("idServidor");
-    const idCurso = data._id;
-    await matricularCurso(idCurso, idServidor);
-    navigate("/pageServidor"); */
+    await axios.put(
+      `${apiURLCourses}/desmatricularCurso/${idCurso}/${idGovEmployee}`
+    );
+    document.location.reload(true);
+    //navigate("/pageServidor");
   };
 
   return (
@@ -119,37 +123,28 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
           </Row>
           <Row className="mt-3">
             <Col>
-              <Button variant="primary">
-               {
-                   encontrou? (<>Matriculado</>):(<>Não Matriculado</>) 
-               }
-              </Button>
+              <p>
+                {encontrou ? (
+                  <>Aluno(a) já matriculado(a) neste curso.</>
+                ) : (
+                  <>Aluno(a) não matriculado(a) neste curso.</>
+                )}
+              </p>
             </Col>
           </Row>
+          <Row className="mt-3"></Row>
           <Row className="mt-3">
-          <Col>
-          {
-              encontrou ? (
-                
-
-                <Button
-                  className="mt-3"
-                  variant="warning"
-                  onClick={desmatricular}
-                >
+            <Col>
+              {encontrou ? (
+                <Button variant="warning" onClick={desmatricular}>
                   Cancelar Matrícula
                 </Button>
-                ) : (
-                <Button
-                 className="mt-3"
-                 variant="success"
-                 onClick={matricular}>
+              ) : (
+                <Button variant="success" onClick={matricular}>
                   Fazer Matrícula
-                </Button> )  
-          }
-          </Col>     
-          </Row>
-          <Row className="mt-3">
+                </Button>
+              )}
+            </Col>
             <Col>
               <Button variant="secondary" onClick={() => navigate(-1)}>
                 Voltar
