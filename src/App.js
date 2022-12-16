@@ -17,7 +17,7 @@ import AddCourse from "./components/Courses/AddCourse/AddCourse";
 import EditCourse from "./components/Courses/EditCourse/EditCourse";
 import Login from "./components/Autentication/Login";
 import Register from "./components/Autentication/Register";
-import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetails";
+import GovEmployeeCourseDetails from "./components/Users/GovEmployeeCourseDetails_old";
 import "react-toastify/dist/ReactToastify.css";
 import GovEmployeeCoursesList from "./components/Users/GovEmployeeCoursesList";
 import GovEmployeeMyCourses from "./components/Users/GovEmployeeMyCourses";
@@ -85,7 +85,7 @@ function App() {
         <Route path="/register" element={<Register apiURL={apiURL}/>} />
 
         {/* Rotas do Servidor Público Autenticado */}
-        <Route path="/listarCursosAluno" element={<ProtectedNewRoute Component={GovEmployeeCoursesList} apiURLCourses={apiURLCourses}/>} />
+        <Route path="/listarCursosAluno/:idGovEmployee" element={<ProtectedNewRoute Component={GovEmployeeCoursesList} apiURLCourses={apiURLCourses}/>} />
         <Route path="/listarCursoAluno/:idCurso/:idGovEmployee" element={<GovEmployeeCourseDetails apiURL={apiURL} apiURLCourses={apiURLCourses}/>} />
         <Route path="/listarCursoAreaAluno/:idGovEmployee" element={<ProtectedRoute Component={GovEmployeeMyCourses} apiURL={apiURL}/>} />
         

@@ -8,8 +8,6 @@ export function ProtectedNewRoute({Component,apiURLCourses}) {
 
   const parsedUser = JSON.parse(loggedInUser || '""');
 
-  console.log("***"+apiURLCourses);
-
   useEffect(() => {
     console.log(parsedUser);
     if (parsedUser.msg !== "OkGovEmployee") {

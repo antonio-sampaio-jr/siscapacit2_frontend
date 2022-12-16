@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Card, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function GovEmployeeCoursesList({apiURLCourses}) {
 
     const[courses,setCourses] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
-    const idServidor = "6398e1849a7cc8fb4d7f1d33";
+    const idGovEmployee = "6398e1849a7cc8fb4d7f1d33";
 
     useEffect(() => {
         try {
@@ -38,7 +39,7 @@ function GovEmployeeCoursesList({apiURLCourses}) {
                 </Card.Subtitle>
             <Button variant="outline-primary">
                 <Link className="saibamais"
-                    to={`/listarCursoAluno/${course._id}/${idServidor}`} //incluir o id do Aluno
+                    to={`/listarCursoAluno/${course._id}/${idGovEmployee}`} //incluir o id do Aluno
                     style={{ textDecoration: "none" }}
                 >
                 Saiba mais
@@ -54,7 +55,7 @@ function GovEmployeeCoursesList({apiURLCourses}) {
                 <Row>
                     <Link  className="btn btn-lg m-1"
                         role="button"
-                        to={`/listarCursoAreaAluno/${idServidor}`} style={{ textDecoration: "none" }}>
+                        to={`/listarCursoAreaAluno/${idGovEmployee}`} style={{ textDecoration: "none" }}>
                     Área do Aluno</Link>
                 </Row>
                 <Row>
