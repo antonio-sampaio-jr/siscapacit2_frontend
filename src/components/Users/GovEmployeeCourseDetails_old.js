@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 
-function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
+function GovEmployeeCourseDetails_old({ apiURL, apiURLCourses }) {
   const [course, setCourse] = useState({});
   const [encontrou, setEncontrou] = useState(false);
   const [allCourses, setAllCourses] = useState([]);
@@ -38,16 +38,14 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
     await axios.put(
       `${apiURLCourses}/matricularCurso/${idCurso}/${idGovEmployee}`
     );
-    // navigate(`/listarCursoAluno/${idCurso}/${idGovEmployee}`);
-    window.location.reload();
+    navigate(`/listarCursoAluno/${idCurso}/${idGovEmployee}`);
   };
 
   const desmatricular = async () => {
     await axios.put(
       `${apiURLCourses}/desmatricularCurso/${idCurso}/${idGovEmployee}`
     );
-    // navigate(`/listarCursoAluno/${idCurso}/${idGovEmployee}`);
-    window.location.reload();
+    navigate(`/listarCursoAluno/${idCurso}/${idGovEmployee}`);
   };
 
   return (
@@ -157,4 +155,4 @@ function GovEmployeeCourseDetails({ apiURL, apiURLCourses }) {
   );
 }
 
-export default GovEmployeeCourseDetails;
+export default GovEmployeeCourseDetails_old;
