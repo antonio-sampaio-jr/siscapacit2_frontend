@@ -33,11 +33,12 @@ function Login({ apiURL, apiURLAdmin }) {
       console.log(response);
       setLoggedUser({ ...response.data });
       localStorage.setItem("loggedUser", JSON.stringify(response.data));
-
+      const idGovEmployee = response.data.user._id;
+     
       if (response.data.msg === "OkAdmin") 
          navigate("/listarServidores");
       else if (response.data.msg === "OkGovEmployee")
-         navigate("/listarCursosAluno");
+         navigate(`/listarCursosAluno/${idGovEmployee}`);
       else navigate("/");
 
       toast.success("Login realizado com sucesso", {
